@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "lakshman",
+    "password": "P@ssw0rd",
+    "database": "dev_webapplication",
+    "host": "dev-mysql.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql",
+    "port": 3306
+  }, 
+  "test": {
+    "username": "Semantic_load",
+    "password": "gpit@1234",
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "lakshman",
+    "password": "P@ssw0rd",
+    "database": "dev_webapplication",
+    "host": "dev-mysql.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql",
+    "port": 3306
+  }
+}
