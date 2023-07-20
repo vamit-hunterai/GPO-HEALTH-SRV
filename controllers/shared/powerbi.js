@@ -16,7 +16,7 @@ module.exports = {
             { name: 'scope', contents: 'openid'},
             { name: 'resource', contents: 'https://analysis.windows.net/powerbi/api'},
             { name: 'client_id', contents: '6854b857-3971-46a1-a507-683701540b48'},
-            { name: 'username', contents: 'test1@gpo-health.com'},
+            { name: 'username', contents: 'test1@hunterai.com'},
             { name: 'password', contents: 'Lov03887'},
         ];
 
