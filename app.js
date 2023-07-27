@@ -15,8 +15,8 @@ const cors = require("cors");
 const path = require("path");
 var app = Express();
 
-// const urlPrefix = "/"+c.config.urlSlug + '/' + c.config.apiVersion;
-const urlPrefix = '/' + c.config.apiVersion;
+ const urlPrefix = "/"+c.config.urlSlug + '/' + c.config.apiVersion;
+//const urlPrefix = '/' + c.config.apiVersion;
 
 app.set('secretKey', 'GPOHealthRestAPI');
 app.set('path', __dirname);
