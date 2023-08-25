@@ -5,14 +5,14 @@ var config = require('../../config/common').config;
 const User = require('../../models').User;
 //var ActiveDirectory = require('activedirectory');
 var ActiveDirectory = require('activedirectory2').promiseWrapper;
-
+const authProvider = require('../../services/AuthProvider');
 module.exports = {
     /**
      * params: {phone, password, role} 
      * */
      authenticate: async(request, response)=>{
         try{
-            if(request.body.authType == 'rest'){
+            if(request.body.authType === 'rest'){
                 const user = await User.findOne({ where: { username: request.body.username, password:request.body.password } });
                 if (user === null) {
                     response.status(401).json({
@@ -25,6 +25,10 @@ module.exports = {
                     
                     response.render(finalObj);
                 }
+            }else if(request.body.authType === "oauth2"){
+
+                await authProvider.acquireToken(request, response);
+
             }else{
                 var con = {
                     url: config.adds.url,

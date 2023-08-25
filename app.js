@@ -5,12 +5,12 @@ const search = require('./route/search');
 /**Route dependencies end */
 
 const Express = require("express");
-//var session = require('express-session');
-const BodyParser = require("body-parser");
+var session = require('express-session');
+//const BodyParser = require("body-parser");
 const busboy = require('connect-busboy');
-const fs = require('fs');
+//const fs = require('fs');
 const c = require("./config/common");
-const dbConfig = require("./config/db");
+//const dbConfig = require("./config/db");
 const cors = require("cors");
 const path = require("path");
 var app = Express();
@@ -21,6 +21,15 @@ app.set('secretKey', 'GPOHealthRestAPI');
 app.set('path', __dirname);
 
 //app.use(session({secret:'GPOHealthRestAPI',resave:false,saveUninitialized:true}));
+app.use(session({
+  secret: "GPOHealthRestAPI",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      httpOnly: true,
+      secure: true, // set this to true on production
+  }
+}));
 app.use(cors({origin: '*'}));
 // app.use(BodyParser.json({limit: '50mb'}));
 // app.use(BodyParser.urlencoded({limit: '50mb', extended: true}));
