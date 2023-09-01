@@ -15,7 +15,7 @@ class AuthProvider {
             const msalInstance = this.getMsalInstance(this.msalConfig);
             
             var tokenRequest = {
-                "scopes": ["User.Read", "offline_access", "openid", "email"],
+                "scopes": ["profile", "offline_access", "openid", "email"],
                 "redirectUri":REDIRECT_URI,
                 "code": req.body.code
             };
