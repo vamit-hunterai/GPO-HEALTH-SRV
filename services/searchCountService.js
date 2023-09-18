@@ -23,31 +23,31 @@ module.exports = {
     resources: async function(params){
         let q = [], priceQ=[];
         SowPricing.belongsTo(SowMaster, {foreignKey: 'Sow_Key'})
-        if(params.sow){
+        if(params && params.sow){
             q.push({
                 NumberSOW : {
                     [Op.like]: '%'+params.sow
                 }
             });
         }
-        if(params.StartDateSOW && params.EndDateSOW){
+        if(params && params.StartDateSOW && params.EndDateSOW){
             q.push({
                 StartDateSOW : {
                     [Op.between]: [params.StartDateSOW, params.EndDateSOW]
                 }
             });
         }
-        if(params.NumberSOW){
+        if(params && params.NumberSOW){
             q.push({
                 NumberSOW : params.NumberSOW
             });
         }
-        if(params.role){
+        if(params && params.role){
             priceQ.push({
                 prcEmpTitle : params.role
             });
         }
-        if(params.location){
+        if(params && params.location){
             priceQ.push({
                 prcLocation : params.location
             });
@@ -74,14 +74,14 @@ module.exports = {
     deliverables: async function(params){
         let q = [];
         SowDeliverable.belongsTo(SowMaster, {foreignKey: 'Sow_Key'})
-        if(params.sow){
+        if(params && params.sow){
             q.push({
                 NumberSOW : {
                     [Op.like]: '%'+params.sow
                 }
             });
         }
-        if(params.NumberSOW){
+        if(params && params.NumberSOW){
             q.push({
                 NumberSOW : params.NumberSOW
             });
@@ -103,26 +103,26 @@ module.exports = {
         let q = [];
 
         SowMilestone.belongsTo(SowMaster, {foreignKey: 'Sow_Key'})
-        if(params.sow){
+        if(params && params.sow){
             q.push({
                 NumberSOW : {
                     [Op.like]: '%'+params.sow
                 }
             });
         }
-        if(params.StartDateSOW && params.EndDateSOW){
+        if(params && params.StartDateSOW && params.EndDateSOW){
             q.push({
                 StartDateSOW : {
                     [Op.between]: [params.StartDateSOW, params.EndDateSOW]
                 }
             });
         }
-        if(params.NumberSOW){
+        if(params && params.NumberSOW){
             q.push({
                 NumberSOW : params.NumberSOW
             });
         }
-        if(params.supplier){
+        if(params && params.supplier){
             q.push({
                 NameSupplier : params.supplier
             });
@@ -147,31 +147,31 @@ module.exports = {
     commercials: async function(params){
         let q = [];
         //SowPricing.belongsTo(SowMaster, {foreignKey: 'Sow_Key'})
-        if(params.sow){
+        if(params && params.sow){
             q.push({
                 NumberSOW : {
                     [Op.like]: '%'+params.sow
                 }
             });
         }
-        if(params.StartDateSOW && params.EndDateSOW){
+        if(params && params.StartDateSOW && params.EndDateSOW){
             q.push({
                 StartDateSOW : {
                     [Op.between]: [params.StartDateSOW, params.EndDateSOW]
                 }
             });
         }
-        if(params.NumberSOW){
+        if(params && params.NumberSOW){
             q.push({
                 NumberSOW : params.NumberSOW
             });
         }
-        if(params.techStack){
+        if(params && params.techStack){
             q.push({
                 PlatSystemsArea : params.techStack
             });
         }
-        if(params.supplier){
+        if(params && params.supplier){
             q.push({
                 NameSupplier : params.supplier
             });
@@ -190,21 +190,21 @@ module.exports = {
     },
     contacts: async function(params){
         let q = [];
-        if(params.sow){
+        if(params && params.sow){
             q.push({
                 NumberSOW : {
                     [Op.like]: '%'+params.sow
                 }
             });
         }
-        if(params.StartDateSOW && params.EndDateSOW){
+        if(params && params.StartDateSOW && params.EndDateSOW){
             q.push({
                 StartDateSOW : {
                     [Op.between]: [params.StartDateSOW, params.EndDateSOW]
                 }
             });
         }
-        if(params.NumberSOW){
+        if(params && params.NumberSOW){
             q.push({
                 NumberSOW : params.NumberSOW
             });

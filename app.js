@@ -13,9 +13,14 @@ const c = require("./config/common");
 //const dbConfig = require("./config/db");
 const cors = require("cors");
 const path = require("path");
+const compression = require('compression');
+
+
 var app = Express();
 
- const urlPrefix = "/"+c.config.urlSlug + '/' + c.config.apiVersion;
+app.use(compression());
+
+const urlPrefix = "/"+c.config.urlSlug + '/' + c.config.apiVersion;
 //const urlPrefix = '/' + c.config.apiVersion;
 
 app.set('secretKey', 'GPOHealthRestAPI');
