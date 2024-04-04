@@ -11,9 +11,9 @@ module.exports.getDBCluster = function(env){
 
 module.exports.msSqlConfig = {
   user: "lakshman",
-  password: "Gpomssql@321",
-  database: "Dev_WebApplication",
-  server: 'dev-test-mssql.c969yoyq9cyy.us-east-1.rds.amazonaws.com',
+  password: "P@ssw0rd",
+  database: "dev_webapplication",
+  server: 'dev-db-test.c969yoyq9cyy.us-east-1.rds.amazonaws.com',
   requestTimeout: 130000, 
   options: { 
     enableArithAbort: true, 
