@@ -3,7 +3,7 @@
     "username": "lakshman",
     "password": "P@ssw0rd",
     "database": "dev_webapplication",
-    "host": "dev-mysql.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
+    "host": "dev-db-test.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
     "dialect": "mysql",
     "port": 3306
   }, 
@@ -18,7 +18,7 @@
     "username": "lakshman",
     "password": "P@ssw0rd",
     "database": "dev_webapplication",
-    "host": "dev-mysql.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
+    "host": "dev-db-test.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
     "dialect": "mysql",
     "port": 3306
   }
