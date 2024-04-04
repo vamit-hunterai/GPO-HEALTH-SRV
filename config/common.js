@@ -12,8 +12,8 @@ module.exports.config = {
         domain:'gpo-health.com'
     },
     s3:{
-        accessKeyId: 'AKIAWLVMBXBUTNYKOT6D',
-        secretKey: '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',
+        accessKeyId: 'AKIAWLVMBXBUX5I27XNN',
+        secretKey: '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',
         location:'us-east-1',
         bucket:'gpotest'
     },
