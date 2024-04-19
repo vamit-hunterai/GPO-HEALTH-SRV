@@ -21,5 +21,21 @@
     "host": "dev-db-test.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
     "dialect": "mysql",
     "port": 3306
+  },
+  "demo1": {
+    "username": "wepapp",
+    "password": "Gpohealth!@!",
+    "database": "l2_cdm_db",
+    "host": "demo-db-test.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql",
+    "port": 3306
+  },
+  "demo2": {
+    "username": "wepapp",
+    "password": "Gpohealth!@!",
+    "database": "l4_aggr_db",
+    "host": "demo-db-test.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql",
+    "port": 3306
   }
 }

@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'PODetails',
-    tableName: 'l1_po_detail'
+    tableName: 'l2_po_detail'
   });
   PODetails.removeAttribute('id');
   PODetails.removeAttribute('createdAt');

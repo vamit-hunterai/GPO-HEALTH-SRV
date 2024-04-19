@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   APDetails.init({
-    ap_key:DataTypes.STRING,
+    //ap_key:DataTypes.STRING,
     HCO_VNDR_NM: DataTypes.STRING,
     HCO_GL_ACCT_DESC : DataTypes.STRING,
     HCO_PO_NBR: DataTypes.STRING,
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'APDetails',
-    tableName: 'l1_ap_detail'
+    tableName: 'l2_ap_detail'
   });
   APDetails.removeAttribute('id');
   APDetails.removeAttribute('createdAt');

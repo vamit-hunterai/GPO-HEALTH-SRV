@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'InvoiceDetail',
     //freezeTableName: true,
    // underscored: true,
-    tableName: 'l1_invoice_detail'
+    tableName: 'l2_invoice_detail'
   });
   InvoiceDetail.removeAttribute('id');
   InvoiceDetail.removeAttribute('createdAt');
