@@ -33,14 +33,14 @@ const modalCustomerMap = {
 };
 const startDateMap = {
     // 'ap-details':"SUBMTG_MBR_NM",
-    'po-details':{date:"pohdrDatePo", po:"po_key", supplier: "pohdrNameSupplier"},
-    'invoices':{date:"invhdrDateInvoice", po:"invhdrNumberPO", invoice:"Invoice_key", supplier: "invhdrNameSupplier"},
-    'ap-details':{supplier:"HCO_VNDR_NM"}
+    'po-details':{date:"pohdrDatePo", po:"pohdrNumberPo", supplier: "pohdrNameSupplier"},
+    'invoices':{date:"invhdrDateInvoice", po:"invhdrNumberPO", invoice:"invhdrNumberInvoice", supplier: "invhdrNameSupplier"},
+    'ap-details':{supplier:"HCO_VNDR_NM", po:'HCO_PO_NBR'}
 };
 const distinctMap = {
     'ap':"ap_key",
-    'po':"po_key",
-    'invoice':"Invoice_key",
+    'po':"pohdrNumberPo",
+    'invoice':"invhdrNumberInvoice",
     'supplier':"pohdrNameSupplier",
 };
 
