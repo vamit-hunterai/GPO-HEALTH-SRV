@@ -85,8 +85,8 @@ function setQueryParams(params, modal){
                 [startDateMap[params.type].po] : params.po
             });
         }
-        if(params && params.page){ 
-            opts.offset = Number(params.page)*limit;
+        if(params && params.page){
+            opts.offset = (Number(params.page) - 1)*limit;
         }
         if(q && q.length>0){
             opts.where={

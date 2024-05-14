@@ -16,7 +16,17 @@ const modalCustomerMap = {
     'ap-details':"SUBMTG_MBR_NM",
     'po-details':"pohdrNameCustomer",
     'po-invoices':"invhdrNameCustomer",
+    'invoice-pdf':"invhdrNameCustomer",
+    "invoices":"invhdrNameCustomer"
 };
+const startDateMap = {
+    // 'ap-details':"SUBMTG_MBR_NM",
+    'po-details':{date:"pohdrDatePo", po:"pohdrNumberPo", supplier: "pohdrNameSupplier"},
+    'invoices':{date:"invhdrDateInvoice", po:"invhdrNumberPO", invoice:"invhdrNumberInvoice", supplier: "invhdrNameSupplier"},
+    'po-invoices':{date:"invhdrDateInvoice", po:"invhdrNumberPO", invoice:"invhdrNumberInvoice", supplier: "invhdrNameSupplier"},
+    'ap-details':{supplier:"HCO_VNDR_NM", po:'HCO_PO_NBR'}
+};
+const limit = 10;
 
 module.exports = {
     //from master + pricing
@@ -253,6 +263,12 @@ module.exports = {
             }
         });
     },
+    calcPagesCount: function(totalRecord){
+        let  totalPage = totalRecord / limit;
+        // add the last page, ugly
+        if (totalRecord % limit != 0) totalPage++;
+        return totalPage.toFixed(0);
+    },
     counts: async function(params){
         if(params && params.type == "PO-INVOICES"){
             await sql.connect(dbConfig.msSqlConfig);
@@ -262,6 +278,15 @@ module.exports = {
             const q = `SELECT  count(*) as total FROM [Dev_WebApplication].[dbo].[${tablePrefix}${tableName}];`;
             //console.log(q)
             return await sql.query(q)
+        }else if(params && params.type == "po-details"){
+            let recordCount = await PODetails.findAll(this.setQueryParams(params,'po-details'));
+            return (recordCount && recordCount.length != 0)? {count : this.calcPagesCount(recordCount[0].dataValues.count) }:0;        
+        }else if(params && params.type == "invoices"){
+            let recordCount = await InvoiceDetail.findAll(this.setQueryParams(params,'invoices'));
+            return (recordCount && recordCount.length != 0)? {count : this.calcPagesCount(recordCount[0].dataValues.count) }:0;
+        }else if(params && params.type == "ap-details"){
+            let recordCount = await APDetails.findAll(this.setQueryParams(params),'ap-details');
+            return (recordCount && recordCount.length != 0)? {count : this.calcPagesCount(recordCount[0].dataValues.count) }:0;
         }else{
             let q = [];
        
@@ -292,6 +317,53 @@ module.exports = {
         //         [Op.and]:q
         //     }
         // });
+    },
+    setQueryParams: function(params, modal){
+        const opts= {}, q = [];
+        
+            opts.attributes = [
+                [Sequelize.fn('COUNT',Sequelize.col('*')),'count']
+            ];
+            
+            
+            if(params && params.customer && modal){
+                q.push({
+                    [modalCustomerMap[modal]] : params.customer
+                });
+    
+            }
+            if(params.startDate && params.endDate && startDateMap[params.type] && startDateMap[params.type].date){
+                q.push({
+                    [startDateMap[params.type].date] : {
+                        [Op.between]: [params.startDate, params.endDate]
+                    }
+                });
+            }
+            if(params.invoice && startDateMap[params.type] && startDateMap[params.type].invoice){
+                q.push({
+                    [startDateMap[params.type].invoice] : params.invoice
+                });
+            }
+            if(params.supplier && startDateMap[params.type] && startDateMap[params.type].supplier){
+                q.push({
+                    [startDateMap[params.type].supplier] : params.supplier
+                });
+            }
+            if(params.po && startDateMap[params.type] && startDateMap[params.type].po){
+                q.push({
+                    [startDateMap[params.type].po] : params.po
+                });
+            }
+            /*if(params && params.page){ 
+                opts.offset = Number(params.page)*limit;
+            }*/
+            if(q && q.length>0){
+                opts.where={
+                    [Op.and]:q 
+                }
+            }
+        
+        return opts;
     },
     apDetails: async function(params){
         let q = [];

@@ -54,14 +54,14 @@ module.exports = {
             let resp;
 
             switch(request.body.type){
-                case 'resources': resp = searchCountService.resources(request.body.params); break;
-                case 'commercials': resp = searchCountService.commercials(request.body.params); break;
-                case 'milestones': resp = searchCountService.milestones(request.body.params); break;
-                case 'contacts': resp = searchCountService.contacts(request.body.params); break;
-                case 'invoices': request.body.type = "Invoice"; resp = searchCountService.counts(request.body); break;   
-                case 'ap-details': request.body.type = "AP"; resp = searchCountService.counts(request.body); break;  
-                case 'po-details': request.body.type = "PO"; resp = searchCountService.counts(request.body); break; 
-                case 'po-invoices': request.body.type = "PO-INVOICES"; resp = searchCountService.counts(request.body); break;   
+                //case 'resources': resp = searchCountService.resources(request.body.params); break;
+                //case 'commercials': resp = searchCountService.commercials(request.body.params); break;
+                //case 'milestones': resp = searchCountService.milestones(request.body.params); break;
+                //case 'contacts': resp = searchCountService.contacts(request.body.params); break;
+                case 'invoices': resp = searchCountService.counts(request.body); break;   
+                case 'ap-details': resp = searchCountService.counts(request.body); break;  
+                case 'po-details': resp = searchCountService.counts(request.body); break; 
+                case 'po-invoices': resp = searchCountService.counts(request.body); break;   
                 
             }
             // console.log(resp)
