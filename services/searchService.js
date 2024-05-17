@@ -528,7 +528,7 @@ module.exports = {
         return await Vendors.findAll({
             where:{
                 VENDOR_NAME_ALIAS : {
-                    [Op.like]: '%'+params.keyword+"%"
+                    [Op.like]: '%'+String(params.keyword).trim()+"%"
                 }
             }
         });
