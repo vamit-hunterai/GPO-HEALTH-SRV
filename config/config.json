@@ -37,5 +37,13 @@
     "host": "demo-db-test.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
     "dialect": "mysql",
     "port": 3306
+  },
+  "demo3": {
+    "username": "wepapp",
+    "password": "Gpohealth!@!",
+    "database": "l3_dm_db",
+    "host": "demo-db-test.c969yoyq9cyy.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql",
+    "port": 3306
   }
 }
