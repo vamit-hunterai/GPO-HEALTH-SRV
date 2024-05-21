@@ -58,7 +58,7 @@ var uploadFile = async function(buffer, fileParams){
 
 module.exports = {
     findAllByUser : (req, res) => {
-      var con = {
+      /*var con = {
             url: config.adds.url,
             baseDN: config.adds.baseDn,
             username: `lveti@${config.adds.domain}`,
@@ -73,18 +73,18 @@ module.exports = {
         
           if (! user) console.log('User: ' + 'lveti' + ' not found.');
           else console.log(user);
-      });
+      });*/
       
 
-    //   ad.getRootDSE(function(err, user) {
-    //     if (err) {
-    //       console.log('ERROR: ' +JSON.stringify(err));
-    //       return;
-    //     }
-      
-    //     if (! user) console.log('User: ' + 'lveti' + ' not found.');
-    //     else console.log(user);
-    // });
+      //   ad.getRootDSE(function(err, user) {
+      //     if (err) {
+      //       console.log('ERROR: ' +JSON.stringify(err));
+      //       return;
+      //     }
+        
+      //     if (! user) console.log('User: ' + 'lveti' + ' not found.');
+      //     else console.log(user);
+      // });
         Files.findAll({ where: { user: req.params.userId} })
         .then(data => {
         res.send(data);
@@ -217,6 +217,49 @@ module.exports = {
                 err.message
             });
         });
+    },
+    getCustomerOutputFileTree: function(req, res){
+      const params = {
+        Bucket: config.s3.bucket,
+        Prefix: 'Customer/'
+      };
+      s3.listObjects(params,function(err,data){
+        if (err) {
+          res.status(500).json({ success: false, err: err.message })
+        } else {
+
+          let fileList = [];
+
+          if(data && data['Contents'] && data['Contents'].length != 0){
+            for(let fileNameIndex in data['Contents']){
+              let fileName = data.Contents[fileNameIndex];
+              if(String(fileName.Key).slice(-1) !== '/'){
+                fileList.push({"name":fileName.Key,"LastModified":new Date(fileName.LastModified).toLocaleDateString()});
+              }
+            }
+          }
+          
+          let response = { 'files': fileList };
+          res.status(200).json({ success: true, response }); 
+        }
+      });
+    },
+    downloadCustomerOutputFile: function(req,res){
+      //"https://gpotest.s3.amazonaws.com/"+
+      if(req.query.fileName){
+        const params = {
+          Bucket: config.s3.bucket,
+          Key: req.query.fileName
+        };
+        res.set('resType', 'blob');
+        res.attachment(req.query.fileName);
+        var fileStream = s3.getObject(params).createReadStream();
+        fileStream.pipe(res);
+        
+      }else{
+        res.status(404);
+      }
+      
     }
 
 }

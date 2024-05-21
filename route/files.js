@@ -8,9 +8,15 @@ var auth = require('../controllers/shared/auth');
 
 router.get('/list', auth.hasAccess('user'), files.findAllByUser);
 
+router.get('/list/output', auth.hasAccess('user'), files.getCustomerOutputFileTree);
+
+
+
 router.get('/getFile', files.getFile);
 
 router.post('/download/:uuid', auth.hasAccess('user'),files.download);
+
+router.post('/download/customer/output', auth.hasAccess('user'), files.downloadCustomerOutputFile);
 
 router.delete('/delete/:uuid', auth.hasAccess('user'),files.delete);
 
